@@ -14,10 +14,13 @@ def gerar_links(cpf):
     ]
     return links
 
-# Função para verificar se o link existe (status 200)
+# Função para verificar se o link existe (usando GET com User-Agent)
 def verificar_link(url):
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36"
+    }
     try:
-        response = requests.head(url)
+        response = requests.get(url, headers=headers)
         return response.status_code == 200
     except:
         return False
